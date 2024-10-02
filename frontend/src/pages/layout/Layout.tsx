@@ -7,7 +7,7 @@ import { CosmosDBStatus } from '../../api'
 import Contoso from '../../assets/Contoso.svg'
 import { HistoryButton, ShareButton } from '../../components/common/Button'
 import { AppStateContext } from '../../state/AppProvider'
-
+import Cog from '../../assets/Cog.png'
 import styles from './Layout.module.css'
 
 const Layout = () => {
@@ -42,7 +42,7 @@ const Layout = () => {
 
   useEffect(() => {
     if (!appStateContext?.state.isLoading) {
-      setLogo(ui?.logo || Contoso)
+      setLogo(ui?.logo || Cog)
     }
   }, [appStateContext?.state.isLoading])
 

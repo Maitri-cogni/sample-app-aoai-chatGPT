@@ -10,7 +10,7 @@ import { isEmpty } from 'lodash'
 import DOMPurify from 'dompurify'
 import { Prism as SyntaxHighlighter } from 'react-syntax-highlighter'
 import { nord } from 'react-syntax-highlighter/dist/esm/styles/prism'
-
+import Cog from '../../assets/Cog.png'
 import styles from './Chat.module.css'
 import Contoso from '../../assets/Contoso.svg'
 import { XSSAllowTags } from '../../constants/sanatizeAllowables'
@@ -108,7 +108,8 @@ const Chat = () => {
 
   useEffect(() => {
     if (!appStateContext?.state.isLoading) {
-      setLogo(ui?.chat_logo || ui?.logo || Contoso)
+      setLogo(ui?.chat_logo || ui?.logo || Cog)
+      
     }
   }, [appStateContext?.state.isLoading])
 
@@ -792,8 +793,10 @@ const Chat = () => {
             {!messages || messages.length < 1 ? (
               <Stack className={styles.chatEmptyState}>
                 <img src={logo} className={styles.chatIcon} aria-hidden="true" />
-                <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1>
-                <h2 className={styles.chatEmptyStateSubtitle}>{ui?.chat_description}</h2>
+                {/* <h1 className={styles.chatEmptyStateTitle}>{ui?.chat_title}</h1> */}
+                <h1 className={styles.chatEmptyStateTitle}> Start chatting </h1>
+                {/* <h2 className={styles.chatEmptyStateSubtitle}>{ui?.chat_description}</h2> */}
+                <h2 className={styles.chatEmptyStateSubtitle}>This chatbot is configured to answer your questions</h2>
               </Stack>
             ) : (
               <div className={styles.chatMessageStream} style={{ marginBottom: isLoading ? '40px' : '0px' }} role="log">
