@@ -1,7 +1,7 @@
 import { useRef, useState, useEffect, useContext, useLayoutEffect } from 'react'
 import { CommandBarButton, IconButton, Dialog, DialogType, Stack } from '@fluentui/react'
-import { SquareRegular, ShieldLockRegular, ErrorCircleRegular } from '@fluentui/react-icons'
-
+import { SquareRegular, ErrorCircleRegular } from '@fluentui/react-icons'
+// import { SquareRegular, ShieldLockRegular, ErrorCircleRegular } from '@fluentui/react-icons'
 import ReactMarkdown from 'react-markdown'
 import remarkGfm from 'remark-gfm'
 import rehypeRaw from 'rehype-raw'
@@ -48,7 +48,7 @@ const enum messageStatus {
 const Chat = () => {
   const appStateContext = useContext(AppStateContext)
   const ui = appStateContext?.state.frontendSettings?.ui
-  const AUTH_ENABLED = appStateContext?.state.frontendSettings?.auth_enabled
+  // const AUTH_ENABLED = appStateContext?.state.frontendSettings?.auth_enabled
   const chatMessageStreamEnd = useRef<HTMLDivElement | null>(null)
   const [isLoading, setIsLoading] = useState<boolean>(false)
   const [showLoadingMessage, setShowLoadingMessage] = useState<boolean>(false)
@@ -56,7 +56,7 @@ const Chat = () => {
   const [isCitationPanelOpen, setIsCitationPanelOpen] = useState<boolean>(false)
   const [isIntentsPanelOpen, setIsIntentsPanelOpen] = useState<boolean>(false)
   const abortFuncs = useRef([] as AbortController[])
-  const [showAuthMessage, setShowAuthMessage] = useState<boolean | undefined>()
+  // const [showAuthMessage, setShowAuthMessage] = useState<boolean | undefined>()
   const [messages, setMessages] = useState<ChatMessage[]>([])
   const [execResults, setExecResults] = useState<ExecResults[]>([])
   const [processMessages, setProcessMessages] = useState<messageStatus>(messageStatus.NotRunning)
@@ -117,18 +117,18 @@ const Chat = () => {
     setIsLoading(appStateContext?.state.chatHistoryLoadingState === ChatHistoryLoadingState.Loading)
   }, [appStateContext?.state.chatHistoryLoadingState])
 
-  const getUserInfoList = async () => {
-    if (!AUTH_ENABLED) {
-      setShowAuthMessage(false)
-      return
-    }
-    const userInfoList = await getUserInfo()
-    if (userInfoList.length === 0 && window.location.hostname !== '127.0.0.1') {
-      setShowAuthMessage(true)
-    } else {
-      setShowAuthMessage(false)
-    }
-  }
+  // const getUserInfoList = async () => {
+  //   if (!AUTH_ENABLED) {
+  //     setShowAuthMessage(false)
+  //     return
+  //   }
+  //   const userInfoList = await getUserInfo()
+  //   if (userInfoList.length === 0 && window.location.hostname !== '127.0.0.1') {
+  //     setShowAuthMessage(true)
+  //   } else {
+  //     setShowAuthMessage(false)
+  //   }
+  // }
 
   let assistantMessage = {} as ChatMessage
   let toolMessage = {} as ChatMessage
@@ -694,9 +694,9 @@ const Chat = () => {
     }
   }, [processMessages])
 
-  useEffect(() => {
-    if (AUTH_ENABLED !== undefined) getUserInfoList()
-  }, [AUTH_ENABLED])
+  // useEffect(() => {
+  //   if (AUTH_ENABLED !== undefined) getUserInfoList()
+  // }, [AUTH_ENABLED])
 
   useLayoutEffect(() => {
     chatMessageStreamEnd.current?.scrollIntoView({ behavior: 'smooth' })
