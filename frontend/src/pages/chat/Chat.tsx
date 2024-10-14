@@ -760,7 +760,7 @@ const Chat = () => {
 
   return (
     <div className={styles.container} role="main">
-      {showAuthMessage ? (
+      {/* {showAuthMessage ? ( 
         <Stack className={styles.chatEmptyState}>
           <ShieldLockRegular
             className={styles.chatIcon}
@@ -787,7 +787,7 @@ const Chat = () => {
             <strong>If you deployed in the last 10 minutes, please wait and reload the page after 10 minutes.</strong>
           </h2>
         </Stack>
-      ) : (
+      ) : ( */}
         <Stack horizontal className={styles.chatRoot}>
           <div className={styles.chatContainer}>
             {!messages || messages.length < 1 ? (
@@ -1038,7 +1038,7 @@ const Chat = () => {
           {appStateContext?.state.isChatHistoryOpen &&
             appStateContext?.state.isCosmosDBAvailable?.status !== CosmosDBStatus.NotConfigured && <ChatHistoryPanel />}
         </Stack>
-      )}
+      {/* )} */}
     </div>
   )
 }
